@@ -1,0 +1,6 @@
+version: '3.6'
+
+services:
+  php_42:
+    ports:
+      - ':80'
