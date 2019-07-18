@@ -10,8 +10,8 @@ ifdef HAS_DOCKER
 		EXECROOT=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
 		EXEC=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
 	else
-		EXECROOT=$(DC) exec php
-		EXEC=$(DC) exec php
+		EXECROOT=$(DC) exec php_88
+		EXEC=$(DC) exec php_88
 	endif
 else
 	EXECROOT=
