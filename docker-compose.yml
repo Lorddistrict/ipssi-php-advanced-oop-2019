@@ -1,6 +1,6 @@
 version: '3.6'
 services:
-  php_42:
+  php_88:
     image: 'chialab/php-dev:7.2-apache'
     volumes:
       - '.:/var/www/html'
