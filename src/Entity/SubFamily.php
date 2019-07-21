@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace Entity;
 
 /**
- * Class Group
+ * Class SubFamily
+ * @package Entity
  */
-class Group
+class SubFamily
 {
     /** @var int $id */
     private $id;
@@ -14,11 +15,8 @@ class Group
     /** @var string $name */
     private $name;
 
-    /** @var Concert $concert */
-    private $concert;
-
-    /** @var Genre $genre */
-    private $genre;
+    /** @var Family $family */
+    private $family;
 
     /**
      * @return int
@@ -53,35 +51,20 @@ class Group
     }
 
     /**
-     * @return Concert
+     * @return Family
      */
-    public function getConcert(): Concert
+    public function getFamily(): Family
     {
-        return $this->concert;
+        return $this->family;
     }
 
     /**
-     * @param Concert $concert
+     * @param Family $family
      */
-    public function setConcert(Concert $concert): void
+    public function setFamily(Family $family): void
     {
-        $this->concert = $concert;
+        $this->family = $family;
     }
 
-    /**
-     * @return Genre
-     */
-    public function getGenre(): Genre
-    {
-        return $this->genre;
-    }
-
-    /**
-     * @param Genre $genre
-     */
-    public function setGenre(Genre $genre): void
-    {
-        $this->genre = $genre;
-    }
 
 }

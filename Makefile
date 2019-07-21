@@ -7,11 +7,11 @@ HAS_DOCKER:=$(shell command -v $(DC) 2> /dev/null)
 
 ifdef HAS_DOCKER
 	ifdef PHP_ENV
-		EXECROOT=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
-		EXEC=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
+		EXECROOT=$(DC) exec -e PHP_ENV=$(PHP_ENV) php_88
+		EXEC=$(DC) exec -e PHP_ENV=$(PHP_ENV) php_88
 	else
-		EXECROOT=$(DC) exec php
-		EXEC=$(DC) exec php
+		EXECROOT=$(DC) exec php_88
+		EXEC=$(DC) exec php_88
 	endif
 else
 	EXECROOT=
