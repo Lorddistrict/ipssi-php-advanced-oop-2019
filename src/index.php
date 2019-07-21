@@ -22,7 +22,5 @@ $musiciansR = new MusicianRepository($instrumentsR);
 $groupsR = new GroupRepository($musiciansR);
 $concertsR = new ConcertRepository($groupsR);
 
-//var_dump($concertsR->getAll());
-//var_dump($groupsR->getAll());
-var_dump($musiciansR->getAll());
-//var_dump($instrumentsR->getAll());
+$test = $concertsR->getAll();
+dd($test);

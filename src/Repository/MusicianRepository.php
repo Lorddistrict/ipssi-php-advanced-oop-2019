@@ -44,13 +44,16 @@ class MusicianRepository
      */
     public function findForGroup(int $id): array
     {
+        $result = [];
+
         foreach ($this->musicians as $index => $musician) {
 
-            if ( $musician['id'] == $id ){
+            if ( $musician['group_id'] == $id ) {
                 $result[] = $musician;
             }
 
         }
+
         return $result;
     }
 }

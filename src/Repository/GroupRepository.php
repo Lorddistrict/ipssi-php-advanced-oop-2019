@@ -44,13 +44,15 @@ class GroupRepository
      */
     public function findForConcert (int $id): array
     {
+        $result = [];
+
         foreach ($this->groups as $key => $group) {
 
-            if ( $group['id'] == $id ){
+            if ( $group['concert_id'] == $id ) {
                 $result[] = $group;
             }
-
         }
+
         return $result;
     }
 }
