@@ -22,5 +22,6 @@ $musiciansR = new MusicianRepository($instrumentsR);
 $groupsR = new GroupRepository($musiciansR);
 $concertsR = new ConcertRepository($groupsR);
 
-$test = $concertsR->getAll();
-dd($test);
+$concerts = $concertsR->getAll();
+//dd($concerts);
+echo(json_encode($concerts, JSON_UNESCAPED_UNICODE));
