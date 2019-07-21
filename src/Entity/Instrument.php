@@ -28,20 +28,30 @@ class Instrument
     private $genre;
 
     /**
-     * @return int
+     * Instrument constructor.
+     * @param int $id
+     * @param string $name
      */
-    public function getId(): int
+    public function __construct(string $name)
     {
-        return $this->id;
+        $this->name = $name;
     }
 
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
+//    /**
+//     * @return int
+//     */
+//    public function getId(): int
+//    {
+//        return $this->id;
+//    }
+//
+//    /**
+//     * @param int $id
+//     */
+//    public function setId(int $id): void
+//    {
+//        $this->id = $id;
+//    }
 
     /**
      * @return string
@@ -59,68 +69,68 @@ class Instrument
         $this->name = $name;
     }
 
-    /**
-     * @return Classification
-     */
-    public function getClassification(): Classification
-    {
-        return $this->classification;
-    }
-
-    /**
-     * @param Classification $classification
-     */
-    public function setClassification(Classification $classification): void
-    {
-        $this->classification = $classification;
-    }
-
-    /**
-     * @return Family
-     */
-    public function getFamily(): Family
-    {
-        return $this->family;
-    }
-
-    /**
-     * @param Family $family
-     */
-    public function setFamily(Family $family): void
-    {
-        $this->family = $family;
-    }
-
-    /**
-     * @return SubFamily
-     */
-    public function getSubfamily(): SubFamily
-    {
-        return $this->subfamily;
-    }
-
-    /**
-     * @param SubFamily $subfamily
-     */
-    public function setSubfamily(SubFamily $subfamily): void
-    {
-        $this->subfamily = $subfamily;
-    }
-
-    /**
-     * @return Genre
-     */
-    public function getGenre(): Genre
-    {
-        return $this->genre;
-    }
-
-    /**
-     * @param Genre $genre
-     */
-    public function setGenre(Genre $genre): void
-    {
-        $this->genre = $genre;
-    }
+//    /**
+//     * @return Classification
+//     */
+//    public function getClassification(): Classification
+//    {
+//        return $this->classification;
+//    }
+//
+//    /**
+//     * @param Classification $classification
+//     */
+//    public function setClassification(Classification $classification): void
+//    {
+//        $this->classification = $classification;
+//    }
+//
+//    /**
+//     * @return Family
+//     */
+//    public function getFamily(): Family
+//    {
+//        return $this->family;
+//    }
+//
+//    /**
+//     * @param Family $family
+//     */
+//    public function setFamily(Family $family): void
+//    {
+//        $this->family = $family;
+//    }
+//
+//    /**
+//     * @return SubFamily
+//     */
+//    public function getSubfamily(): SubFamily
+//    {
+//        return $this->subfamily;
+//    }
+//
+//    /**
+//     * @param SubFamily $subfamily
+//     */
+//    public function setSubfamily(SubFamily $subfamily): void
+//    {
+//        $this->subfamily = $subfamily;
+//    }
+//
+//    /**
+//     * @return Genre
+//     */
+//    public function getGenre(): Genre
+//    {
+//        return $this->genre;
+//    }
+//
+//    /**
+//     * @param Genre $genre
+//     */
+//    public function setGenre(Genre $genre): void
+//    {
+//        $this->genre = $genre;
+//    }
 
 }

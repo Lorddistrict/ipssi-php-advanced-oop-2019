@@ -1,0 +1,12 @@
+{
+    "name": "etienne/ipssi-php-advanced-oop-2019",
+    "authors": [
+        {
+            "name": "Lorddistrict",
+            "email": "etienne.crespi@laposte.net"
+        }
+    ],
+    "require": {
+        "fzaninotto/faker": "^1.8"
+    }
+}

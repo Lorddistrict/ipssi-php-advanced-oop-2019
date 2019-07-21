@@ -1,42 +1,28 @@
 <?php
 declare(strict_types=1);
 
-use Classes\CallAPI;
-use Classes\RandomGroupName;
-use Controller\Concert\AddConcertController;
-use Controller\Instrument\GetAllInstrumentsController;
-use Controller\Instrument\GetOneInstrumentController;
-use Controller\Musician\AddMusicianController;
-use Entity\Concert;
+namespace App;
 
+use App\Classes\Autoloader;
+use Classes\DependencyInjectionContainer;
+use Repository\ConcertRepository;
+use Repository\GroupRepository;
+use Repository\InstrumentRepository;
+use Repository\MusicianRepository;
+
+require '../vendor/autoload.php';
 require 'Classes/Autoloader.php';
 Autoloader::register();
 
-/** @var CallAPI $callAPI */
-$callAPI = new CallAPI();
+$container = new DependencyInjectionContainer();
+$callAPI = $container->getCallAPI();
 
-// First get all instruments from the API
+$instrumentsR = new InstrumentRepository($callAPI);
+$musiciansR = new MusicianRepository($instrumentsR);
+$groupsR = new GroupRepository($musiciansR);
+$concertsR = new ConcertRepository($groupsR);
 
-/** @var GetAllInstrumentsController $getInstruments */
-$instrumentController = new GetAllInstrumentsController();
-/** @var array $allInstruments */
-$allInstruments = $instrumentController->getAllInstruments($callAPI);
-
-// Then create a Concert
-
-$randomGroupName = new RandomGroupName();
-/** @var AddConcertController $concertController */
-$concertController = new AddConcertController();
-$concert = $concertController->addConcert($randomGroupName);
-
-
-
-$instrumentController = new GetOneInstrumentController();
-$instrumentController->getOneInstrument($allInstruments);
-
-
-/** @var AddMusicianController $musicianController */
-$musicianController = new AddMusicianController();
-$musician = $musicianController->addMusician();
-
-//var_dump($allInstruments);
+//var_dump($concertsR->getAll());
+//var_dump($groupsR->getAll());
+var_dump($musiciansR->getAll());
+//var_dump($instrumentsR->getAll());

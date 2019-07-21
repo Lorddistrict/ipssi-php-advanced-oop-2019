@@ -11,20 +11,18 @@ class Concert
     /** @var string $name */
     private $name;
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
+    /** @var array $groups */
+    private $groups;
 
     /**
+     * Concert constructor.
      * @param string $name
+     * @param array $groups
      */
-    public function setName(string $name): void
+    public function __construct(string $name, array $groups)
     {
         $this->name = $name;
+        $this->groups = $groups;
     }
 
 }

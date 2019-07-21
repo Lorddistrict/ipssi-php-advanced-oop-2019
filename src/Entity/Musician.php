@@ -9,110 +9,31 @@ namespace Entity;
  */
 class Musician
 {
-    /**
-     * @var string $name
-     */
-    private $name;
-
-    /**
-     * @var string $firstname
-     */
+    /** @var string $firstname */
     private $firstname;
 
-    /**
-     * @var int $age
-     */
-    private $age;
+    /** @var string $name */
+    private $name;
 
-    /**
-     * @var Instrument $instrument
-     */
+    /** @var Instrument $instrument */
     private $instrument;
 
-    /**
-     * @var Group $group
-     */
+    /** @var Group $group */
     private $group;
 
     /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFirstname(): string
-    {
-        return $this->firstname;
-    }
-
-    /**
+     * Musician constructor.
      * @param string $firstname
-     */
-    public function setFirstname(string $firstname): void
-    {
-        $this->firstname = $firstname;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAge(): int
-    {
-        return $this->age;
-    }
-
-    /**
-     * @param int $age
-     */
-    public function setAge(int $age): void
-    {
-        $this->age = $age;
-    }
-
-    /**
-     * @return Instrument
-     */
-    public function getInstrument(): Instrument
-    {
-        return $this->instrument;
-    }
-
-    /**
+     * @param string $name
      * @param Instrument $instrument
-     */
-    public function setInstrument(Instrument $instrument): void
-    {
-        $this->instrument = $instrument;
-    }
-
-    /**
-     * @return Group
-     */
-    public function getGroup(): Group
-    {
-        return $this->group;
-    }
-
-    /**
      * @param Group $group
      */
-    public function setGroup(Group $group): void
+    public function __construct(string $firstname, string $name, Instrument $instrument, Group $group)
     {
+        $this->firstname = $firstname;
+        $this->name = $name;
+        $this->instrument = $instrument;
         $this->group = $group;
     }
-
 
 }
