@@ -38,6 +38,9 @@ class Instrument
         $this->genre = $genre;
     }
 
+    /**
+     * @return string
+     */
     public function slugifiedName(): string
     {
         return $this->slugify($this->getName());
