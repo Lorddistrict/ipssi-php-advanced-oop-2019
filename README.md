@@ -9,10 +9,6 @@
 **[Command](#command)**<br>
 **[Makefile](#makefile)**<br>
 **[Commands available](#commands-available)**<br>
-**[CircleCI](#circleci)**<br>
-**[Mailhog](#mailhog)**<br>
-**[Errors](#errors)**<br>
-**[Required](#required)**<br>
 **[How does it works ?](#how-the-project-works-?)**<br>
 
 ----
