@@ -22,6 +22,9 @@ class Musician
     /** @var int */
     private $age;
 
+    /** @var string */
+    private $email;
+
     /** @var Instrument */
     private $instrument;
 
@@ -32,11 +35,12 @@ class Musician
      * @param int $age
      * @param Instrument $instrument
      */
-    public function __construct(string $name, string $firstname, int $age, Instrument $instrument)
+    public function __construct(string $name, string $firstname, int $age, string $email, Instrument $instrument)
     {
         $this->name = $name;
         $this->firstname = $firstname;
         $this->age = $age;
+        $this->email = $email;
         $this->instrument = $instrument;
     }
 
@@ -73,6 +77,14 @@ class Musician
     }
 
     /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
      * @return Instrument
      */
     public function getInstrument(): Instrument
@@ -81,11 +93,11 @@ class Musician
     }
 
     /**
-     * @param string $name
+     * @param string $email
      * @return bool
      */
-    public function is(string $name): bool
+    public function is(string $email): bool
     {
-        return $name === $this->getName();
+        return $email === $this->getEmail();
     }
 }

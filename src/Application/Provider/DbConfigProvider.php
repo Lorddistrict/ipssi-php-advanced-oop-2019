@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Application\Provider;
 
 /**
- * Class DbConfigProvider
+ * Interface DbConfigProvider
  * @package Application\Provider
  */
 interface DbConfigProvider
