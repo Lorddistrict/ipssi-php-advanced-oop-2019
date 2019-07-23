@@ -18,7 +18,7 @@ final class GroupCollection
      * GroupCollection constructor.
      * @param Group[] $groups
      */
-    public function __construct(Group ...$groups)
+    public function __construct(array ...$groups)
     {
         $this->groups = $groups;
     }

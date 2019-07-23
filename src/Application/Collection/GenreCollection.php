@@ -18,7 +18,7 @@ final class GenreCollection
      * GenreCollection constructor.
      * @param Genre[] $genres
      */
-    public function __construct(Genre ...$genres)
+    public function __construct(array ...$genres)
     {
         $this->genres = $genres;
     }

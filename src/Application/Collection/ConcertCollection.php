@@ -18,7 +18,7 @@ final class ConcertCollection
      * ConcertCollection constructor.
      * @param Concert ...$concerts
      */
-    public function __construct(Concert ...$concerts)
+    public function __construct(array ...$concerts)
     {
         $this->concerts = $concerts;
     }
