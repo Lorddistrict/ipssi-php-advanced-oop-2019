@@ -5,3 +5,14 @@ services:
     volumes:
       - '.:/var/www/html'
       - './docker/webservice/000-default.conf:/etc/apache2/sites-available/000-default.conf'
+    depends_on:
+      - database_88
+  database_88:
+    image: 'mariadb'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    adminer_88:
+      image: 'adminer'
+      environment:
+        - ADMINER_DEFAULT_SERVER=database
+        - ADMINER_DESIGN=brade

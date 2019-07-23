@@ -4,3 +4,9 @@ services:
   php_88:
     ports:
       - ':80'
+  adminer_88:
+    ports:
+      - ':8080'
+  database_88:
+    ports:
+      - ':3306'
