@@ -10,7 +10,7 @@ use Application\Repository\MusicianRepository;
  * Class MusicianController
  * @package Application\Controller
  */
-class MusicianController
+final class MusicianController
 {
     /** @var MusicianRepository */
     private $musicianRepository;

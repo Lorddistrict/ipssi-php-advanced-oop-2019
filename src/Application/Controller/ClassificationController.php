@@ -10,7 +10,7 @@ use Application\Repository\ClassificationRepository;
  * Class ClassificationController
  * @package Application\Controller
  */
-class ClassificationController
+final class ClassificationController
 {
     /** @var ClassificationRepository */
     private $classificationRepository;

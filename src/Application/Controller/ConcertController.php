@@ -10,7 +10,7 @@ use Application\Repository\ConcertRepository;
  * Class ConcertController
  * @package Application\Controller
  */
-class ConcertController
+final class ConcertController
 {
     /** @var ConcertRepository */
     private $concertRepository;

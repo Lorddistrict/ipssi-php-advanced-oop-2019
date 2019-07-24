@@ -10,7 +10,7 @@ use Application\Repository\InstrumentRepository;
  * Class InstrumentController
  * @package Application\Controller
  */
-class InstrumentController
+final class InstrumentController
 {
     /** @var InstrumentRepository */
     private $instrumentRepository;

@@ -10,7 +10,7 @@ use Application\Repository\FamilyRepository;
  * Class FamilyController
  * @package Application\Controller
  */
-class FamilyController
+final class FamilyController
 {
     /** @var FamilyRepository */
     private $familyRepository;

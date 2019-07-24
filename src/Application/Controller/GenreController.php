@@ -10,7 +10,7 @@ use Application\Repository\GenreRepository;
  * Class GenreController
  * @package Application\Controller
  */
-class GenreController
+final class GenreController
 {
     /** @var GenreRepository */
     private $genreRepository;

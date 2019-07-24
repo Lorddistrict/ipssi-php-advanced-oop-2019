@@ -10,7 +10,7 @@ use Application\Repository\GroupRepository;
  * Class GroupController
  * @package Application\Controller
  */
-class GroupController
+final class GroupController
 {
     /** @var GroupRepository */
     private $groupRepository;
