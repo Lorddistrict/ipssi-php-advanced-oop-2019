@@ -15,7 +15,7 @@ final class GroupNotFoundException extends LogicException
      * GroupNotFoundException constructor.
      * @param string $message
      */
-    public function __construct(string $message = 'Le group n\'a pas été trouvé')
+    public function __construct(string $message = 'Group not found')
     {
         parent::__construct($message);
     }

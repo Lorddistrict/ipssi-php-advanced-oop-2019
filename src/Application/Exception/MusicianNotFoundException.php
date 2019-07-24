@@ -15,7 +15,7 @@ final class MusicianNotFoundException extends LogicException
      * MusicianNotFoundException constructor.
      * @param string $message
      */
-    public function __construct(string $message = 'Le musician n\'a pas été trouvé')
+    public function __construct(string $message = 'Musician not found')
     {
         parent::__construct($message);
     }

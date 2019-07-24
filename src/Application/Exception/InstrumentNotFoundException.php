@@ -15,7 +15,7 @@ final class InstrumentNotFoundException extends LogicException
      * InstrumentNotFoundException constructor.
      * @param string $message
      */
-    public function __construct(string $message = 'L\'instrument n\'a pas été trouvé')
+    public function __construct(string $message = 'Instrument not found')
     {
         parent::__construct($message);
     }

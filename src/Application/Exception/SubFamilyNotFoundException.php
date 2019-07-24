@@ -6,16 +6,16 @@ namespace Application\Exception;
 use LogicException;
 
 /**
- * Class ConcertNotFoundException
+ * Class SubFamilyNotFoundException
  * @package Application\Exception
  */
-final class ConcertNotFoundException extends LogicException
+final class SubFamilyNotFoundException extends LogicException
 {
     /**
-     * ConcertNotFoundException constructor.
+     * SubFamilyNotFoundException constructor.
      * @param string $message
      */
-    public function __construct(string $message = 'Concert not found')
+    public function __construct(string $message = 'SubFamily not found')
     {
         parent::__construct($message);
     }
