@@ -33,7 +33,7 @@ class InstrumentController
         $selectInstrument = $this->instrumentRepository->findByName($searchName);
 
         if ($selectInstrument === null) {
-            return (new ErrorController( new InstrumentNotFoundException($searchName) ))->error404Action();
+            return (new ErrorController (new InstrumentNotFoundException($searchName) ) )->error404Action();
         }
 
         ob_start();

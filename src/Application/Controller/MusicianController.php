@@ -33,7 +33,7 @@ class MusicianController
         $selectMusician = $this->musicianRepository->findByEmail($searchEmail);
 
         if ($selectMusician === null) {
-            return (new ErrorController( new MusicianNotFoundException($searchEmail) ))->error404Action();
+            return (new ErrorController (new MusicianNotFoundException($searchEmail) ) )->error404Action();
         }
 
         ob_start();
