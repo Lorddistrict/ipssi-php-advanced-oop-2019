@@ -25,23 +25,23 @@ class Musician
     /** @var string */
     private $email;
 
-    /** @var Instrument */
-    private $instrument;
+    /** @var Group */
+    private $group;
 
     /**
      * Musician constructor.
      * @param string $name
      * @param string $firstname
      * @param int $age
-     * @param Instrument $instrument
+     * @param Group $group
      */
-    public function __construct(string $name, string $firstname, int $age, string $email, Instrument $instrument)
+    public function __construct(string $name, string $firstname, int $age, string $email, Group $group)
     {
         $this->name = $name;
         $this->firstname = $firstname;
         $this->age = $age;
         $this->email = $email;
-        $this->instrument = $instrument;
+        $this->group = $group;
     }
 
     /**
@@ -85,11 +85,11 @@ class Musician
     }
 
     /**
-     * @return Instrument
+     * @return Group
      */
-    public function getInstrument(): Instrument
+    public function getGroup(): Group
     {
-        return $this->instrument;
+        return $this->group;
     }
 
     /**

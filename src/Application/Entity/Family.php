@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Application\Entity;
 
-use Application\Collection\SubFamilyCollection;
 use Application\Helper\SlugifyHelper;
 
 /**
@@ -17,18 +16,18 @@ class Family
     /** @var string */
     private $name;
 
-    /** @var SubFamilyCollection */
-    private $subFamily;
+    /** @var Classification */
+    private $classification;
 
     /**
      * Family constructor.
      * @param string $name
-     * @param SubFamilyCollection $subFamily
+     * @param Classification $classification
      */
-    public function __construct(string $name, SubFamilyCollection $subFamily)
+    public function __construct(string $name, Classification $classification)
     {
         $this->name = $name;
-        $this->subFamily = $subFamily;
+        $this->classification = $classification;
     }
 
     /**
@@ -48,11 +47,11 @@ class Family
     }
 
     /**
-     * @return SubFamilyCollection
+     * @return Classification
      */
-    public function getSubFamily(): SubFamilyCollection
+    public function getClassification(): Classification
     {
-        return $this->subFamily;
+        return $this->classification;
     }
 
     /**

@@ -28,8 +28,16 @@ class Instrument
     /** @var Genre[] */
     private $genre;
 
+    /**
+     * Instrument constructor.
+     * @param string $name
+     * @param Classification $classification
+     * @param Family $family
+     * @param SubFamily $subFamily
+     * @param Genre[] $genre
+     */
     public function __construct(string $name, Classification $classification, Family $family, SubFamily $subFamily,
-                                Genre $genre)
+                                array $genre)
     {
         $this->name = $name;
         $this->classification = $classification;

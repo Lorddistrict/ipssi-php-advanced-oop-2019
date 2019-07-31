@@ -16,18 +16,19 @@ class SubFamily
     /** @var string */
     private $name;
 
-    /** @var Instrument[] */
-    private $instruments;
+    /** @var Family */
+    private $family;
 
     /**
      * SubFamily constructor.
+     * @param int $id
      * @param string $name
-     * @param Instrument[] $instruments
+     * @param Family $family
      */
-    public function __construct(string $name, array $instruments)
+    public function __construct(string $name, Family $family)
     {
         $this->name = $name;
-        $this->instruments = $instruments;
+        $this->family = $family;
     }
 
     /**
@@ -47,11 +48,11 @@ class SubFamily
     }
 
     /**
-     * @return Instrument[]
+     * @return Family
      */
-    public function getInstruments(): array
+    public function getFamily(): Family
     {
-        return $this->instruments;
+        return $this->family;
     }
 
     /**

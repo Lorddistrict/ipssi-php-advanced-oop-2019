@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Application\Entity;
 
-use Application\Collection\GroupCollection;
 use Application\Helper\SlugifyHelper;
 
 /**
@@ -17,20 +16,18 @@ class Concert
     /** @var string */
     private $name;
 
-    /** @var GroupCollection */
-    private $groups;
+    /** @var string */
+    private $adress;
 
     /**
      * Concert constructor.
      * @param string $name
-     * @param GroupCollection $groups
      */
-    public function __construct(string $name, GroupCollection $groups)
+    public function __construct(string $name, string $adress)
     {
         $this->name = $name;
-        $this->groups = $groups;
+        $this->adress = $adress;
     }
-
 
     /**
      * @return string
@@ -49,11 +46,11 @@ class Concert
     }
 
     /**
-     * @return GroupCollection
+     * @return string
      */
-    public function getGroups(): GroupCollection
+    public function getAdress(): string
     {
-        return $this->groups;
+        return $this->adress;
     }
 
     /**
