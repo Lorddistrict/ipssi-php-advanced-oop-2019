@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   php_88:
-    image: 'chialab/php-dev:7.2-apache'
+    image: 'chialab/php-dev:7.3-apache'
     volumes:
       - '.:/var/www/html'
       - './docker/webservice/000-default.conf:/etc/apache2/sites-available/000-default.conf'
@@ -11,8 +11,8 @@ services:
     image: 'mariadb'
     environment:
       - MYSQL_ROOT_PASSWORD=root
-    adminer_88:
-      image: 'adminer'
-      environment:
-        - ADMINER_DEFAULT_SERVER=database
-        - ADMINER_DESIGN=brade
+  adminer_88:
+    image: 'adminer'
+    environment:
+      - ADMINER_DEFAULT_SERVER=database_88
+      - ADMINER_DESIGN=brade

@@ -2,6 +2,7 @@
 # Source author : Cyrille Grandval
 # Edited by Etienne Crespi
 
+CONSOLE=bin/console
 DC=docker-compose
 HAS_DOCKER:=$(shell command -v $(DC) 2> /dev/null)
 
@@ -38,14 +39,41 @@ start: docker-compose.override.yml
 	$(DC) pull || true
 	$(DC) build
 	$(DC) up -d
+	$(EXEC) composer install
+
+#	$(EXEC) $(CONSOLE) hautelook:fixtures:load -q
 
 .PHONY: stop ## stop the project
 stop:
 	$(DC) down
 
+.PHONY: restart ## Restart the project (stop containers and rebuild it)
+restart:
+	make stop
+	make start
+
 .PHONY: exec ## Run bash in the php container
 exec:
 	$(EXEC) /bin/bash
+
+.PHONY: buildb ## Rebuild the db
+buildb:
+	$(EXEC) $(CONSOLE) d:d:d --force
+	$(EXEC) $(CONSOLE) d:d:c
+	$(EXEC) $(CONSOLE) d:s:c
+	make start
+
+.PHONY: entity ## Call make:entity
+entity:
+	$(EXEC) $(CONSOLE) make:entity
+
+.PHONY: controller ## Call make:controller
+controller:
+	$(EXEC) $(CONSOLE) make:controller
+
+.PHONY: form ## Call make:form
+form:
+	$(EXEC) $(CONSOLE) make:form
 
 ##
 ## Replace local files with your own configuration

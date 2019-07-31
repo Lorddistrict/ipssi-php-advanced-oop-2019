@@ -11,5 +11,9 @@ use Application\Entity\Classification;
  */
 interface FindClassification
 {
+    /**
+     * @param string $name
+     * @return Classification|null
+     */
     public function findByName(string $name = ''): ?Classification;
 }

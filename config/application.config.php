@@ -57,8 +57,8 @@ return [
         DbConfigProvider::class => DbConfigProviderFactory::class,
 
         // Default (maybe not required)
-        IndexController::class      => IndexControllerFactory::class,
-        DateTimeInterface::class    => DateTimeImmutableFactory::class,
+        IndexController::class   => IndexControllerFactory::class,
+        DateTimeInterface::class => DateTimeImmutableFactory::class,
 
         // Classifications
         ClassificationController::class => ClassificationControllerFactory::class,

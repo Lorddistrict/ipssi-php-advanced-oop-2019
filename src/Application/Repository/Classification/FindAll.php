@@ -11,5 +11,8 @@ use Application\Collection\ClassificationCollection;
  */
 interface FindAll
 {
+    /**
+     * @return ClassificationCollection
+     */
     public function fetchAll(): ClassificationCollection;
 }
