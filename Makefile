@@ -40,8 +40,7 @@ start: docker-compose.override.yml
 	$(DC) build
 	$(DC) up -d
 	$(EXEC) composer install
-
-#	$(EXEC) $(CONSOLE) hautelook:fixtures:load -q
+	$(EXEC) $(CONSOLE) hautelook:fixtures:load -q
 
 .PHONY: stop ## stop the project
 stop:

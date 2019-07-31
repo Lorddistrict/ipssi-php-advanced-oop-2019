@@ -1,0 +1,5 @@
+Application\Entity\SubFamily:
+  subfamily-{1..3}:
+    __construct: false
+    name: "<name()>"
+    family: "@family-<numberBetween(1-5)>"
