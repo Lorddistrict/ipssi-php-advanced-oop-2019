@@ -1,5 +1,10 @@
 -- Adminer 4.7.2 MySQL dump
 
+DROP DATABASE IF EXISTS `app`;
+CREATE DATABASE `app`;
+
+USE `app`;
+
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;

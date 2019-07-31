@@ -1,4 +1,0 @@
-Application\Entity\Classification:
-  classification-{1..10}:
-    __construct: false
-    name: "<word()>"

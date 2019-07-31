@@ -1,6 +1,0 @@
-Application\Entity\Musician:
-  musician-{1..50}:
-    __construct: false
-    name: "<name()>"
-    firstname: "<firstname()>"
-    group: "@group-<numberBetween(1-20)>"

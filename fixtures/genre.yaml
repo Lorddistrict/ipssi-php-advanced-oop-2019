@@ -1,4 +1,0 @@
-Application\Entity\Genre:
-  genre-{1..20}:
-    __construct: false
-    name: "<word()>"

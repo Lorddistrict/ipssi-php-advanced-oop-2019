@@ -1,5 +1,0 @@
-Application\Entity\Concert:
-  concert-{1..5}:
-    __construct: false
-    name: "<word()>"
-    genre: "@genre-<numberBetween(1,20)"

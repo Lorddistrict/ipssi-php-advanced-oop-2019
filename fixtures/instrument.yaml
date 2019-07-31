@@ -1,8 +1,0 @@
-Application\Entity\Instrument:
-  instrument-{1..30}:
-    __construct: false
-    name: "<word()>"
-    classification: "@classification-<numberBetween(1-10)>"
-    family: "@family-<numberBetween(1-5)>"
-    subfamily: "@subfamily-<numberBetween(1-3)>"
-    genre: "@genre-<numberBetween(1-20)>"

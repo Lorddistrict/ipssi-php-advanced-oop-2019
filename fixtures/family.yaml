@@ -1,5 +1,0 @@
-Application\Entity\Family:
-  family-{1..5}:
-    __construct: false
-    name: "<word()>"
-    classification: "@classification-<numberBetween(1-10)>"
