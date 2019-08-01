@@ -13,6 +13,9 @@ class Classification
 {
     use SlugifyHelper;
 
+    /** @var int */
+    private $id;
+
     /** @var string */
     private $name;
 
@@ -26,17 +29,25 @@ class Classification
     }
 
     /**
-     * @return string
+     * @return int|null
      */
-    public function slugifiedName(): string
+    public function getId(): ?int
+    {
+        return (int)$this->id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function slugifiedName(): ?string
     {
         return $this->slugify($this->getName());
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }

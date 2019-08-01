@@ -5,6 +5,7 @@ namespace Application\Repository;
 
 use Application\Collection\ConcertCollection;
 use Application\Entity\Concert;
+use Application\Entity\Genre;
 use PDO;
 
 /**
@@ -30,7 +31,7 @@ final class PdoConcertRepository implements ConcertRepository
      */
     public function fetchAll(): ConcertCollection
     {
-        $statement = $this->database->query('SELECT * FROM concert;');
+        $statement = $this->database->query('SELECT * FROM `concert`;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Concert::class, ['', '']
         );
@@ -46,7 +47,7 @@ final class PdoConcertRepository implements ConcertRepository
      */
     public function findByName(string $name = ''): ?Concert
     {
-        $statement = $this->database->query('SELECT * FROM concert WHERE name = :name;');
+        $statement = $this->database->query('SELECT * FROM `concert` WHERE `name` = :name;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Concert::class, ['', '']
         );
@@ -60,6 +61,25 @@ final class PdoConcertRepository implements ConcertRepository
         }
 
         return $concert;
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function addConcert(string $name, Genre $genre): bool
+    {
+        $statement = $this->database->prepare('INSERT INTO `concert` (`name`, `genre_id`) VALUES(:name, :genre_id);');
+        $statement->execute([
+            ':name' => $name,
+            ':genre_id' => $genre->getId(),
+        ]);
+
+        if (!$statement) {
+            return false;
+        }
+
+        return true;
     }
 
 }

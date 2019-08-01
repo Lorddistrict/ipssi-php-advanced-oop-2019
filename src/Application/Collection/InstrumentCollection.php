@@ -18,7 +18,7 @@ final class InstrumentCollection
      * InstrumentCollection constructor.
      * @param Instrument[] $instruments
      */
-    public function __construct(array ...$instruments)
+    public function __construct(Instrument ...$instruments)
     {
         $this->instruments = $instruments;
     }

@@ -11,14 +11,14 @@ use Application\Entity\Genre;
  */
 final class GenreCollection
 {
-    /** @var Genre[] */
+    /** @var Genre */
     private $genres;
 
     /**
      * GenreCollection constructor.
-     * @param Genre[] $genres
+     * @param Genre $genres
      */
-    public function __construct(array ...$genres)
+    public function __construct(Genre ...$genres)
     {
         $this->genres = $genres;
     }

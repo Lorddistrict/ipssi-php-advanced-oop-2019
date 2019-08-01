@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Application\Repository;
 
 use Application\Collection\SubFamilyCollection;
+use Application\Entity\Family;
 use Application\Entity\SubFamily;
 use PDO;
 
@@ -30,7 +31,7 @@ final class PdoSubFamilyRepository implements SubFamilyRepository
      */
     public function fetchAll(): SubFamilyCollection
     {
-        $statement = $this->database->query('SELECT * FROM subfamily;');
+        $statement = $this->database->query('SELECT * FROM `subfamily`;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, SubFamily::class, ['', '']
         );
@@ -46,7 +47,7 @@ final class PdoSubFamilyRepository implements SubFamilyRepository
      */
     public function findByName(string $name = ''): ?SubFamily
     {
-        $statement = $this->database->query('SELECT * FROM subfamily WHERE name = :name;');
+        $statement = $this->database->prepare('SELECT * FROM `subfamily` WHERE name = :name;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, SubFamily::class, ['', '']
         );
@@ -60,6 +61,48 @@ final class PdoSubFamilyRepository implements SubFamilyRepository
         }
 
         return $subFamily;
+    }
+
+    /**
+     * @param int $id
+     * @return SubFamily|null
+     */
+    public function findById(int $id): ?SubFamily
+    {
+        $statement = $this->database->prepare('SELECT * FROM `subfamily` WHERE `id` = :id;');
+        $statement->setFetchMode(
+            PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, SubFamily::class, ['', '']
+        );
+
+        $statement->execute([
+            ':id' => $id,
+        ]);
+
+        if (!$subFamily = $statement->fetch()) {
+            return null;
+        }
+
+        return $subFamily;
+    }
+
+    /**
+     * @param string $name
+     * @param Family $family
+     * @return bool
+     */
+    public function addSubFamily(string $name, Family $family): bool
+    {
+        $statement = $this->database->prepare('INSERT INTO `subfamily` (`name`, `family_id`) VALUES(:name, :family_id);');
+        $statement->execute([
+            ':name' => $name,
+            ':family_id' => $family->getId(),
+        ]);
+
+        if (!$statement) {
+            return false;
+        }
+
+        return true;
     }
 
 }

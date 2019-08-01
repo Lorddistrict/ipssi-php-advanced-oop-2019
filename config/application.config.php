@@ -26,6 +26,7 @@ use Application\Factory\GroupRepositoryFactory;
 use Application\Factory\IndexControllerFactory;
 use Application\Factory\InstrumentControllerFactory;
 use Application\Factory\InstrumentRepositoryFactory;
+use Application\Factory\MusicAPIFactory;
 use Application\Factory\MusicianControllerFactory;
 use Application\Factory\MusicianRepositoryFactory;
 use Application\Factory\ParseUriHelperFactory;
@@ -47,6 +48,7 @@ use Application\Repository\SubFamilyRepository;
 
 use Application\Router\ParseUriHelper;
 use Application\Router\Router;
+use Application\Service\API\MusicAPI;
 
 return [
     'factories' => [
@@ -91,5 +93,8 @@ return [
         // SubFamilies
         SubFamilyController::class => SubFamilyControllerFactory::class,
         SubFamilyRepository::class => SubFamilyRepositoryFactory::class,
+
+        // API
+        MusicAPI::class => MusicAPIFactory::class,
     ],
 ];

@@ -18,7 +18,7 @@ final class MusicianCollection
      * MusicianCollection constructor.
      * @param Musician[] $musicians
      */
-    public function __construct(array ...$musicians)
+    public function __construct(Musician ...$musicians)
     {
         $this->musicians = $musicians;
     }

@@ -11,5 +11,15 @@ use Application\Entity\Instrument;
  */
 interface FindInstrument
 {
+    /**
+     * @param int $id
+     * @return Instrument|null
+     */
+    public function findById(int $id): ?Instrument;
+
+    /**
+     * @param string $name
+     * @return Instrument|null
+     */
     public function findByName(string $name = ''): ?Instrument;
 }

@@ -18,7 +18,7 @@ final class SubFamilyCollection
      * SubFamilyCollection constructor.
      * @param SubFamily[] $subFamilies
      */
-    public function __construct(array ...$subFamilies)
+    public function __construct(SubFamily ...$subFamilies)
     {
         $this->subFamilies = $subFamilies;
     }

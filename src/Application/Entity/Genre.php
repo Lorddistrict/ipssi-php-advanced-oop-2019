@@ -13,6 +13,9 @@ class Genre
 {
     use SlugifyHelper;
 
+    /** @var int */
+    private $id;
+
     /** @var string */
     private $name;
 
@@ -23,6 +26,14 @@ class Genre
     public function __construct(string $name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return (int)$this->id;
     }
 
     /**

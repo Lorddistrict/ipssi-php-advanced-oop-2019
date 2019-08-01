@@ -30,7 +30,7 @@ final class PdoGroupRepository implements GroupRepository
      */
     public function fetchAll(): GroupCollection
     {
-        $statement = $this->database->query('SELECT * FROM group;');
+        $statement = $this->database->query('SELECT * FROM `group`;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Group::class, ['', '']
         );
@@ -46,7 +46,7 @@ final class PdoGroupRepository implements GroupRepository
      */
     public function findByName(string $name = ''): ?Group
     {
-        $statement = $this->database->query('SELECT * FROM group WHERE name = :name;');
+        $statement = $this->database->query('SELECT * FROM `group` WHERE `name` = :name;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Group::class, ['', '']
         );
@@ -60,6 +60,24 @@ final class PdoGroupRepository implements GroupRepository
         }
 
         return $group;
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function addGroup(string $name): bool
+    {
+        $statement = $this->database->prepare('INSERT INTO `group` (`name`) VALUES(:name);');
+        $statement->execute([
+            ':name' => $name,
+        ]);
+
+        if (!$statement) {
+            return false;
+        }
+
+        return true;
     }
 
 }

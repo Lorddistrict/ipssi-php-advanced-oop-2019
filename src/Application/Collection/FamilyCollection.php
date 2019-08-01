@@ -18,7 +18,7 @@ final class FamilyCollection
      * FamilyCollection constructor.
      * @param Family[] $families
      */
-    public function __construct(array ...$families)
+    public function __construct(Family ...$families)
     {
         $this->families = $families;
     }

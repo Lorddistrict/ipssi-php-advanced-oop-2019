@@ -30,7 +30,7 @@ final class PdoMusicianRepository implements MusicianRepository
      */
     public function fetchAll(): MusicianCollection
     {
-        $statement = $this->database->query('SELECT * FROM musician;');
+        $statement = $this->database->query('SELECT * FROM `musician`;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Musician::class, ['', '']
         );
@@ -46,7 +46,7 @@ final class PdoMusicianRepository implements MusicianRepository
      */
     public function findByEmail(string $email = ''): ?Musician
     {
-        $statement = $this->database->query('SELECT * FROM musician WHERE email = :email;');
+        $statement = $this->database->query('SELECT * FROM `musician` WHERE `email` = :email;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Musician::class, ['', '']
         );
@@ -60,6 +60,24 @@ final class PdoMusicianRepository implements MusicianRepository
         }
 
         return $musician;
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function addMusician(string $name): bool
+    {
+        $statement = $this->database->prepare('INSERT INTO `musician` (`name`) VALUES(:name);');
+        $statement->execute([
+            ':name' => $name,
+        ]);
+
+        if (!$statement) {
+            return false;
+        }
+
+        return true;
     }
 
 }

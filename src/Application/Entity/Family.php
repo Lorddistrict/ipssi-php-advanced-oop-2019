@@ -13,6 +13,11 @@ class Family
 {
     use SlugifyHelper;
 
+    /**
+     * @var int
+     */
+    private $id;
+
     /** @var string */
     private $name;
 
@@ -31,6 +36,14 @@ class Family
     }
 
     /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return (int)$this->id;
+    }
+
+    /**
      * @return string
      */
     public function slugifiedName(): string
@@ -39,17 +52,17 @@ class Family
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * @return Classification
+     * @return Classification|null
      */
-    public function getClassification(): Classification
+    public function getClassification(): ?Classification
     {
         return $this->classification;
     }

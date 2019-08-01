@@ -11,5 +11,15 @@ use Application\Entity\SubFamily;
  */
 interface FindSubFamily
 {
+    /**
+     * @param int $id
+     * @return SubFamily|null
+     */
+    public function findById(int $id): ?SubFamily;
+
+    /**
+     * @param string $name
+     * @return SubFamily|null
+     */
     public function findByName(string $name = ''): ?SubFamily;
 }

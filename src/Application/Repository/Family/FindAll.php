@@ -11,5 +11,8 @@ use Application\Collection\FamilyCollection;
  */
 interface FindAll
 {
+    /**
+     * @return FamilyCollection
+     */
     public function fetchAll(): FamilyCollection;
 }

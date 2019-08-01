@@ -18,7 +18,7 @@ final class ClassificationCollection
      * ClassificationCollection constructor.
      * @param Classification[] $classifications
      */
-    public function __construct(array $classifications)
+    public function __construct(Classification ...$classifications)
     {
         $this->classifications = $classifications;
     }

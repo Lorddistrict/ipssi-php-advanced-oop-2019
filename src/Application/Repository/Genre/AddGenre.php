@@ -3,17 +3,15 @@ declare(strict_types=1);
 
 namespace Application\Repository\Genre;
 
-use Application\Entity\Genre;
-
 /**
- * Interface FindGenre
+ * Interface AddGenre
  * @package Application\Repository\Genre
  */
-interface FindGenre
+interface AddGenre
 {
     /**
      * @param string $name
-     * @return Genre|null
+     * @return bool
      */
-    public function findByName(string $name = ''): ?Genre;
+    public function addGenre(string $name): bool;
 }

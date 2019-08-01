@@ -11,5 +11,15 @@ use Application\Entity\Family;
  */
 interface FindFamily
 {
+    /**
+     * @param int $id
+     * @return Family|null
+     */
+    public function findById(int $id): ?Family;
+
+    /**
+     * @param string $name
+     * @return Family|null
+     */
     public function findByName(string $name = ''): ?Family;
 }

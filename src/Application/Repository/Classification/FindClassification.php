@@ -12,6 +12,12 @@ use Application\Entity\Classification;
 interface FindClassification
 {
     /**
+     * @param int $id
+     * @return Classification|null
+     */
+    public function findById(int $id): ?Classification;
+
+    /**
      * @param string $name
      * @return Classification|null
      */

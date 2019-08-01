@@ -11,5 +11,8 @@ use Application\Collection\GenreCollection;
  */
 interface FindAll
 {
+    /**
+     * @return GenreCollection
+     */
     public function fetchAll(): GenreCollection;
 }

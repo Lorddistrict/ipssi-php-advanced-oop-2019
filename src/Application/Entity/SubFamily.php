@@ -13,6 +13,9 @@ class SubFamily
 {
     use SlugifyHelper;
 
+    /** @var int */
+    private $id;
+
     /** @var string */
     private $name;
 
@@ -29,6 +32,14 @@ class SubFamily
     {
         $this->name = $name;
         $this->family = $family;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return (int)$this->id;
     }
 
     /**

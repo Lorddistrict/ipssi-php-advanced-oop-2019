@@ -30,7 +30,7 @@ final class PdoGenreRepository implements GenreRepository
      */
     public function fetchAll(): GenreCollection
     {
-        $statement = $this->database->query('SELECT * FROM genre;');
+        $statement = $this->database->query('SELECT * FROM `genre`;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Genre::class, ['', '']
         );
@@ -46,7 +46,7 @@ final class PdoGenreRepository implements GenreRepository
      */
     public function findByName(string $name = ''): ?Genre
     {
-        $statement = $this->database->query('SELECT * FROM genre WHERE name = :name;');
+        $statement = $this->database->prepare('SELECT * FROM `genre` WHERE `name` = :name;');
         $statement->setFetchMode(
             PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Genre::class, ['', '']
         );
@@ -60,6 +60,24 @@ final class PdoGenreRepository implements GenreRepository
         }
 
         return $genre;
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function addGenre(string $name): bool
+    {
+        $statement = $this->database->prepare('INSERT INTO `genre` (`name`) VALUES(:name);');
+        $statement->execute([
+            ':name' => $name,
+        ]);
+
+        if (!$statement) {
+            return false;
+        }
+
+        return true;
     }
 
 }
