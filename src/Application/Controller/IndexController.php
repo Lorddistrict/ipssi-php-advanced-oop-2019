@@ -113,12 +113,13 @@ final class IndexController
 
                 //echo('Je taff sur : ' . $currentRepository . ' <===> ' . $data['name'] . '<br>');
 
-                if ($dbTable == 'family') {
-                    dd($this->familyRepository->fetchAll());
+                if ($dbTable == 'instrument') {
+                    //dd($this->instrumentRepository->fetchAll());
+                    dd($dataAPI[0]);
                 }
 
                 // Enter if not already in the database
-                if (!$this->$currentRepository->findByName($data['name'])) {
+                if ($this->$currentRepository->findByName($data['name']) == null) {
                     $addMethod = 'add' . $dbTable;
 
                     switch ($dbTable) {

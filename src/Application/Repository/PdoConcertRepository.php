@@ -69,10 +69,10 @@ final class PdoConcertRepository implements ConcertRepository
      */
     public function addConcert(string $name, Genre $genre): bool
     {
-        $statement = $this->database->prepare('INSERT INTO `concert` (`name`, `genre_id`) VALUES(:name, :genre_id);');
+        $statement = $this->database->prepare('INSERT INTO `concert` (`name`, `genre`) VALUES(:name, :genre);');
         $statement->execute([
             ':name' => $name,
-            ':genre_id' => $genre->getId(),
+            ':genre' => $genre->getId(),
         ]);
 
         if (!$statement) {

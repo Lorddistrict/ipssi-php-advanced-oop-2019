@@ -30,10 +30,12 @@ final class PdoClassificationRepository implements ClassificationRepository
      */
     public function fetchAll(): ClassificationCollection
     {
-        $statement = $this->database->query('SELECT * FROM `classification`;');
-        $statement->setFetchMode(
-            PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Classification::class, ['', '']
-        );
+        $statement = $this->database->query('
+            SELECT classification.id as classification_id, 
+                   classification.name as classification_name
+            FROM classification');
+
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $classifications = $statement->fetchAll();
 
         return new ClassificationCollection(...$classifications);
@@ -45,11 +47,13 @@ final class PdoClassificationRepository implements ClassificationRepository
      */
     public function findByName(string $name = ''): ?Classification
     {
-        $statement = $this->database->prepare('SELECT * FROM `classification` WHERE `name` = :name;');
-        $statement->setFetchMode(
-            PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Classification::class, ['', '']
-        );
+        $statement = $this->database->prepare('
+            SELECT classification.id as classification_id, 
+                   classification.name as classification_name
+            FROM classification 
+            WHERE name = :name');
 
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute([
             ':name' => $name,
         ]);
@@ -57,6 +61,13 @@ final class PdoClassificationRepository implements ClassificationRepository
         if (!$classification = $statement->fetch()) {
             return null;
         }
+
+        $classificationObject = new Classification($classification['classification_name']);
+        (function ($classification, $classificationArr) {
+            $classification->setId((int)$classificationArr['classification_id']);
+        })->bindTo($foo = $classificationObject, Classification::class)($foo, $classification);
+
+        $classification = $classificationObject;
 
         return $classification;
     }
@@ -67,11 +78,13 @@ final class PdoClassificationRepository implements ClassificationRepository
      */
     public function findById(int $id): ?Classification
     {
-        $statement = $this->database->prepare('SELECT * FROM `classification` WHERE `id` = :id;');
-        $statement->setFetchMode(
-            PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Classification::class, ['', '']
-        );
+        $statement = $this->database->prepare('
+            SELECT classification.id as classification_id, 
+                   classification.name as classification_name 
+            FROM classification 
+            WHERE id = :id;');
 
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute([
             ':id' => $id,
         ]);
@@ -79,6 +92,13 @@ final class PdoClassificationRepository implements ClassificationRepository
         if (!$classification = $statement->fetch()) {
             return null;
         }
+
+        $classificationObject = new Classification($classification['classification_name']);
+        (function ($classification, $classificationArr) {
+            $classification->setId((int)$classificationArr['classification_id']);
+        })->bindTo($foo = $classificationObject, Classification::class)($foo, $classification);
+
+        $classification = $classificationObject;
 
         return $classification;
     }
@@ -89,7 +109,10 @@ final class PdoClassificationRepository implements ClassificationRepository
      */
     public function addClassification(string $name): bool
     {
-        $statement = $this->database->prepare('INSERT INTO `classification` (`name`) VALUES(:name);');
+        $statement = $this->database->prepare('
+            INSERT INTO classification (name) 
+            VALUES(:name)');
+
         $statement->execute([
             ':name' => $name,
         ]);

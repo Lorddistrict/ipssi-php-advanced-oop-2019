@@ -30,11 +30,12 @@ final class PdoGenreRepository implements GenreRepository
      */
     public function fetchAll(): GenreCollection
     {
-        $statement = $this->database->query('SELECT * FROM `genre`;');
-        $statement->setFetchMode(
-            PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Genre::class, ['', '']
+        $statement = $this->database->query(
+            'SELECT `id` as `genre_id`,
+                              `name` as `genre_name`
+                        FROM `genre`;'
         );
-
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $genres = $statement->fetchAll();
 
         return new GenreCollection(...$genres);

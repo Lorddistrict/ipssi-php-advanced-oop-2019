@@ -37,6 +37,14 @@ class Classification
     }
 
     /**
+     * @param int $id
+     */
+    private function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return string|null
      */
     public function slugifiedName(): ?string

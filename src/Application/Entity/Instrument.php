@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Application\Entity;
 
+use Application\Collection\GenreCollection;
 use Application\Helper\SlugifyHelper;
 
 /**
@@ -12,6 +13,9 @@ use Application\Helper\SlugifyHelper;
 class Instrument
 {
     use SlugifyHelper;
+
+    /** @var int */
+    private $id;
 
     /** @var string */
     private $name;
@@ -25,7 +29,7 @@ class Instrument
     /** @var SubFamily */
     private $subFamily;
 
-    /** @var Genre[] */
+    /** @var GenreCollection */
     private $genre;
 
     /**
@@ -34,16 +38,32 @@ class Instrument
      * @param Classification $classification
      * @param Family $family
      * @param SubFamily $subFamily
-     * @param Genre[] $genre
+     * @param GenreCollection $genre
      */
     public function __construct(string $name, Classification $classification, Family $family, SubFamily $subFamily,
-                                array $genre)
+                                GenreCollection $genre)
     {
         $this->name = $name;
         $this->classification = $classification;
         $this->family = $family;
         $this->subFamily = $subFamily;
         $this->genre = $genre;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    private function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -87,9 +107,9 @@ class Instrument
     }
 
     /**
-     * @return Genre[]
+     * @return GenreCollection
      */
-    public function getGenre(): array
+    public function getGenre(): GenreCollection
     {
         return $this->genre;
     }

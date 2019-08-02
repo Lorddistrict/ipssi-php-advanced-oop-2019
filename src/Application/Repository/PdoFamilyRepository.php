@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Application\Repository;
 
 use Application\Collection\FamilyCollection;
-use Application\Container;
 use Application\Entity\Classification;
 use Application\Entity\Family;
 use PDO;
@@ -32,10 +31,37 @@ final class PdoFamilyRepository implements FamilyRepository
      */
     public function fetchAll(): FamilyCollection
     {
-        $statement = $this->database->query('SELECT * FROM `family`;');
-        $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Family::class, ['', '']);
+        $statement = $this->database->query('
+            SELECT family.id as family_id, 
+                   family.name as family_name, 
+                   classification.id as classification_id, 
+                   classification.name as classification_name 
+            FROM family, classification 
+            WHERE family.classification = classification.id');
 
-        $families = $statement->fetchAll();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $dbFamilies = $statement->fetchAll();
+
+        foreach ($dbFamilies as $key => $family) {
+            $classificationObject = new Classification($family['classification_name']);
+
+            (function ($classification, $familyArr) {
+                $classification->setId((int)$familyArr['classification_id']);
+            })->bindTo($foo = $classificationObject, Classification::class)($foo, $family);
+
+            $familyObject = new Family($family['family_name'], $classificationObject);
+
+            (function ($family, $familyArr) {
+                $family->setId((int)$familyArr['family_id']);
+            })->bindTo($foo = $familyObject, Family::class)($foo, $family);
+
+            $families[] = $familyObject;
+        }
+        dd($families);
+
+        if ($families === null) {
+            return new FamilyCollection();
+        }
 
         return new FamilyCollection(...$families);
     }
@@ -46,11 +72,16 @@ final class PdoFamilyRepository implements FamilyRepository
      */
     public function findByName(string $name = ''): ?Family
     {
-        $statement = $this->database->prepare('SELECT * FROM `family` WHERE `name` = :name;');
-        $statement->setFetchMode(
-            PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Family::class, ['', '']
-        );
+        $statement = $this->database->prepare('
+            SELECT family.id as family_id, 
+                   family.name as family_name, 
+                   classification.id as classification_id, 
+                   classification.name as classification_name 
+            FROM family, classification 
+            WHERE family.classification = classification.id 
+              AND family.name = :name');
 
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute([
             ':name' => $name,
         ]);
@@ -58,6 +89,18 @@ final class PdoFamilyRepository implements FamilyRepository
         if (!$family = $statement->fetch()) {
             return null;
         }
+
+        $classificationObject = new Classification($family['classification_name']);
+        (function ($classification, $familyArr) {
+            $classification->setId((int)$familyArr['classification_id']);
+        })->bindTo($foo = $classificationObject, Classification::class)($foo, $family);
+
+        $familyObject = new Family($family['family_name'], $classificationObject);
+        (function ($family, $familyArr) {
+            $family->setId((int)$familyArr['family_id']);
+        })->bindTo($foo = $familyObject, Family::class)($foo, $family);
+
+        $family = $familyObject;
 
         return $family;
     }
@@ -68,11 +111,16 @@ final class PdoFamilyRepository implements FamilyRepository
      */
     public function findById(int $id): ?Family
     {
-        $statement = $this->database->prepare('SELECT * FROM `family` WHERE `id` = :id;');
-        $statement->setFetchMode(
-            PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Family::class, ['', '']
-        );
+        $statement = $this->database->prepare('
+            SELECT family.id as family_id, 
+                   family.name as family_name, 
+                   classification.id as classification_id, 
+                   classification.name as classification_name 
+            FROM family, classification 
+            WHERE family.classification = classification.id 
+              AND family.id = :id');
 
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute([
             ':id' => $id,
         ]);
@@ -80,6 +128,18 @@ final class PdoFamilyRepository implements FamilyRepository
         if (!$family = $statement->fetch()) {
             return null;
         }
+
+        $classificationObject = new Classification($family['classification_name']);
+        (function ($classification, $familyArr) {
+            $classification->setId((int)$familyArr['classification_id']);
+        })->bindTo($foo = $classificationObject, Classification::class)($foo, $family);
+
+        $familyObject = new Family($family['family_name'], $classificationObject);
+        (function ($family, $familyArr) {
+            $family->setId((int)$familyArr['family_id']);
+        })->bindTo($foo = $familyObject, Family::class)($foo, $family);
+
+        $family = $familyObject;
 
         return $family;
     }
@@ -91,10 +151,13 @@ final class PdoFamilyRepository implements FamilyRepository
      */
     public function addFamily(string $name, Classification $classification): bool
     {
-        $statement = $this->database->prepare('INSERT INTO `family` (`name`, `classification_id`) VALUES(:name, :classification_id);');
+        $statement = $this->database->prepare('
+            INSERT INTO family (name, classification) 
+            VALUES(:name, :classification)');
+
         $statement->execute([
             ':name' => $name,
-            ':classification_id' => $classification->getId(),
+            ':classification' => $classification->getId(),
         ]);
 
         if (!$statement) {
